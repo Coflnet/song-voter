@@ -10,11 +10,11 @@ class SettingsController extends GetxController {
     });
   }
 
-  void login(String googleId) {
+  Future login(String googleId) async {
     this._setGoogleId(googleId);
   }
 
-  void logout() {
+  Future logout() async {
     this._setGoogleId(null);
   }
 }
