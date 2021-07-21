@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:song_voter/global_widgets/base.dart';
 
-class HomeView extends StatelessWidget {
+class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Base(

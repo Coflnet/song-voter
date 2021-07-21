@@ -1,3 +1,0 @@
-class Settings {
-  String? googleId;
-}

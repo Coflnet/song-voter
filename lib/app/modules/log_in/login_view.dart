@@ -4,7 +4,14 @@ import 'package:song_voter/app/modules/log_in/google_login.dart';
 import 'package:song_voter/app/modules/log_in/guest_login.dart';
 import 'package:song_voter/global_widgets/base.dart';
 
-class LoginView extends StatelessWidget {
+class LoginWidget extends StatelessWidget {
+  final String headline;
+  final String? subHeadline;
+
+  LoginWidget({Key? key, required this.headline, this.subHeadline})
+      : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
     return Base(
         showNavbar: false,
@@ -15,11 +22,20 @@ class LoginView extends StatelessWidget {
                   top: MediaQuery.of(context).size.height * 0.2,
                   bottom: MediaQuery.of(context).size.height * 0.2),
               child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text("Login",
-                      style: Theme.of(context).textTheme.headline1),
-                ),
+                child: Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(headline,
+                        style: Theme.of(context).textTheme.headline1),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: subHeadline != null
+                        ? Text(subHeadline!,
+                            style: Theme.of(context).textTheme.headline2)
+                        : Container(),
+                  ),
+                ]),
               ),
             ),
             Padding(
@@ -65,7 +81,9 @@ class LoginView extends StatelessWidget {
                 ],
               ),
             ),
-            GuestLoginWidget()
+            GuestLoginWidget(
+              previousTitle: headline,
+            )
           ],
         ));
   }

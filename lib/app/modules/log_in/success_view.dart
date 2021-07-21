@@ -6,7 +6,7 @@ import 'package:song_voter/global_widgets/base.dart';
 
 class LoginSuccessView extends StatelessWidget {
   void _handleContinue() {
-    Get.to(HomeView());
+    Get.to(HomeWidget());
   }
 
   @override
@@ -45,11 +45,11 @@ class LoginSuccessView extends StatelessWidget {
             child: Center(
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.height * 0.05,
+                height: MediaQuery.of(context).size.height * 0.075,
                 child: TextButton(
                   child: Text(
                     "Continue",
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.headline5,
                   ),
                   onPressed: _handleContinue,
                 ),
@@ -61,7 +61,7 @@ class LoginSuccessView extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.05,
               child: Text(
                 "Thanks for joining Song Voter",
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.headline6,
               ),
             ),
           ),

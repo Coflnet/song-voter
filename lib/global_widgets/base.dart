@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:song_voter/app/modules/home/home.dart';
-import 'package:song_voter/app/modules/party/party.dart';
+import 'package:song_voter/app/modules/party/party_overview.dart';
 import 'package:song_voter/app/modules/settings/settings.dart';
 
 class Base extends StatefulWidget {
@@ -55,10 +55,10 @@ class _BaseState extends State<Base> {
           _selectedIndex = index;
           switch (index) {
             case 0:
-              navigate(HomeView(), index);
+              navigate(HomeWidget(), index);
               break;
             case 1:
-              navigate(PartyView(), index);
+              navigate(PartyOverviewWidget(), index);
               break;
             case 2:
               navigate(SettingsView(), index);

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:song_voter/app/modules/log_in/login_controller.dart';
+import 'package:song_voter/app/data/services/user_service.dart';
 import 'package:song_voter/app/modules/log_in/success_view.dart';
 
 class GoogleLoginWidget extends StatefulWidget {
@@ -12,32 +11,9 @@ class GoogleLoginWidget extends StatefulWidget {
 }
 
 class _GoogleLoginWidgetState extends State<GoogleLoginWidget> {
-  final LoginController loginController = Get.put(LoginController());
+  final UserService _userService = UserService.instance;
 
   String? _errorMessage;
-
-  final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: [
-      'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
-    ],
-  );
-
-  @override
-  void initState() {
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
-      try {
-        if (account == null) {
-          throw Exception();
-        }
-        final googleId = account.id;
-        loginController.googleLogin(googleId);
-        Get.to(LoginSuccessView());
-      } catch (error) {
-        _showErrorMessage();
-      }
-    });
-  }
 
   void _updateErrorMessage(String? newMessage) {
     setState(() {
@@ -47,8 +23,11 @@ class _GoogleLoginWidgetState extends State<GoogleLoginWidget> {
 
   Future _handleSignIn() async {
     try {
-      await _googleSignIn.signIn();
+      await _userService.signInWithGoogle();
+
+      Get.to(LoginSuccessView());
     } catch (error) {
+      debugPrint(error.toString());
       _showErrorMessage();
     }
   }

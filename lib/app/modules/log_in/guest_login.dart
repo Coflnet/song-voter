@@ -3,8 +3,14 @@ import 'package:get/route_manager.dart';
 import 'package:song_voter/app/modules/log_in/guest_login_warning_view.dart';
 
 class GuestLoginWidget extends StatelessWidget {
+  String previousTitle;
+
+  GuestLoginWidget({Key? key, required this.previousTitle}) : super(key: key);
+
   void _handleSignIn() {
-    Get.to(GuestLoginWarningWidget());
+    Get.to(GuestLoginWarningWidget(
+      previousTitle: previousTitle,
+    ));
   }
 
   Widget build(BuildContext context) {
